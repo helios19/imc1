@@ -1,0 +1,124 @@
+buildscript {
+    ext['dependencyPluginVersion'] = '0.6.0.RELEASE'
+    ext['gradleDockerVersion'] = '1.2'
+    ext['junitVersion'] = '4.10'
+    ext['guavaVersion'] = '18.0'
+    ext['commonsLangVersion'] = '3.4'
+    ext['lombokVersion'] = '1.16.18'
+    ext['slf4jVersion'] = '1.7.12'
+    ext['logbackVersion'] = '1.1.7'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
+    }
+
+}
+
+group = 'imc-test'
+
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'docker'
+
+jar {
+    group = 'imc-test'
+    baseName = 'imc-visitor'
+    version = '1.0'
+    manifest {
+        attributes 'Main-Class': 'com.imc.visitor.Application'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+mainClassName = 'com.imc.visitor.Application'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+dependencies {
+
+    // guava
+    compile "com.google.guava:guava:${guavaVersion}"
+
+    // logging
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    // apache commons lang
+    compile "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+    // lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+    // unit testing
+    compile "org.slf4j:jcl-over-slf4j:1.7.12"
+//    testCompile "junit:junit:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+    testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10'
+}
+
+checkstyle {
+    toolVersion = '8.12'
+    ignoreFailures = false
+    configFile = file("src/main/resources/checkstyle.xml")
+}
+
+findbugs {
+    toolVersion = '3.0.1'
+    ignoreFailures = false
+}
+
+pmd {
+    toolVersion = '6.7.0'
+    ignoreFailures = false
+    ruleSetFiles = files("src/main/resources/ruleset.xml")
+    ruleSets = []
+    rulePriority = 3
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
