@@ -4,7 +4,7 @@ buildscript {
     ext['junitVersion'] = '4.10'
     ext['guavaVersion'] = '18.0'
     ext['commonsLangVersion'] = '3.4'
-    ext['lombokVersion'] = '1.16.18'
+    ext['lombokVersion'] = '1.16.20'
     ext['slf4jVersion'] = '1.7.12'
     ext['logbackVersion'] = '1.1.7'
 
