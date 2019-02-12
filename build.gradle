@@ -1,10 +1,10 @@
 buildscript {
-    ext['dependencyPluginVersion'] = '0.6.0.RELEASE'
     ext['gradleDockerVersion'] = '1.2'
     ext['junitVersion'] = '4.10'
+    ext['junitJupiterVersion'] = '5.3.1'
     ext['guavaVersion'] = '18.0'
     ext['commonsLangVersion'] = '3.4'
-    ext['lombokVersion'] = '1.16.18'
+    ext['lombokVersion'] = '1.16.20'
     ext['slf4jVersion'] = '1.7.12'
     ext['logbackVersion'] = '1.1.7'
 
@@ -71,10 +71,9 @@ dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
 
     // unit testing
-    compile "org.slf4j:jcl-over-slf4j:1.7.12"
-//    testCompile "junit:junit:${junitVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     testCompile "org.spockframework:spock-core:1.2-groovy-2.4"
 }
 
