@@ -32,8 +32,8 @@ After the application has started, the standard output should display the follow
 [main] INFO  com.imc.visitor.Application - Area of Triangle(base=7.0, height=8.0): 28.0 
 [main] INFO  com.imc.visitor.Application - Area of Rectangle(breadth=9.0, height=10.0): 90.0 
 [main] INFO  com.imc.visitor.Application - Area of Rectangle(breadth=11.0, height=12.0): 132.0 
-[main] INFO  com.imc.visitor.Application - Area of Circle(radius=20.0): 1256.6370614359173 
-[main] INFO  com.imc.visitor.Application - Area of Circle(radius=30.0): 2827.4333882308138 
+[main] INFO  com.imc.visitor.Application - Area of Circle(radius=20.0): 1256.637061435917200
+[main] INFO  com.imc.visitor.Application - Area of Circle(radius=30.0): 2827.433388230813700
 
 ```
 
