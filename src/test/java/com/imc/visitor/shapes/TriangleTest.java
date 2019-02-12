@@ -2,6 +2,8 @@ package com.imc.visitor.shapes;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,23 +15,23 @@ public class TriangleTest {
     @Test
     public void shouldReturnATriangleInstanceWhenHeightAndBreadthAreValid() {
         // given
-        double height = 7;
-        double base = 6;
+        BigDecimal height = BigDecimal.valueOf(7);
+        BigDecimal base = BigDecimal.valueOf(6);
 
         // when
         Triangle triangle = Triangle.builder().height(height).base(base).build();
 
         // then
         assertNotNull(triangle);
-        assertTrue(triangle.getHeight() == 7);
-        assertTrue(triangle.getBase() == 6);
+        assertTrue(triangle.getHeight().intValue() == 7);
+        assertTrue(triangle.getBase().intValue() == 6);
 
     }
 
     @Test
     public void shouldThrowAnExceptionWhenHeightIsNotPositive() {
         // given
-        double height = -7;
+        BigDecimal height = BigDecimal.valueOf(-7);
 
         // when
         Triangle.TriangleBuilder triangleBuilder = Triangle.builder();
@@ -43,7 +45,7 @@ public class TriangleTest {
     @Test
     public void shouldThrowAnExceptionWhenBaseIsNotPositive() {
         // given
-        double base = -6;
+        BigDecimal base = BigDecimal.valueOf(-6);
 
         // when
         Triangle.TriangleBuilder triangleBuilder = Triangle.builder();

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang3.Validate;
 
+import java.math.BigDecimal;
+
 /**
  * Circle shape class.
  */
@@ -15,7 +17,7 @@ import org.apache.commons.lang3.Validate;
 @Getter
 public class Circle implements Shape {
 
-    private double radius;
+    private BigDecimal radius;
 
     @Override
     public <T> T accept(ShapeVisitor<T> visitor) {
@@ -26,7 +28,7 @@ public class Circle implements Shape {
      * Custom implementation of Lombok Circle Builder class covering the fields validation check.
      */
     public static class CircleBuilder {
-        private double radius;
+        private BigDecimal radius;
 
         /**
          * Builder method assigning value to "radius" variable.
@@ -34,8 +36,8 @@ public class Circle implements Shape {
          * @param value Radius value
          * @return Circle builder instance
          */
-        public CircleBuilder radius(double value) {
-            Validate.isTrue(value >= 0, "Circle radius must be a positive value");
+        public CircleBuilder radius(BigDecimal value) {
+            Validate.isTrue(value != null && value.doubleValue() >= 0, "Circle radius must be a positive value");
             this.radius = value;
             return this;
         }

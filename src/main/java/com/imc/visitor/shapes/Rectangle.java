@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang3.Validate;
 
+import java.math.BigDecimal;
+
 /**
  * Rectangle shape class.
  */
@@ -15,8 +17,8 @@ import org.apache.commons.lang3.Validate;
 @Getter
 public final class Rectangle implements Shape {
 
-    private double breadth;
-    private double height;
+    private BigDecimal breadth;
+    private BigDecimal height;
 
     @Override
     public <T> T accept(ShapeVisitor<T> visitor) {
@@ -29,8 +31,8 @@ public final class Rectangle implements Shape {
      */
     public static class RectangleBuilder {
 
-        private double breadth;
-        private double height;
+        private BigDecimal breadth;
+        private BigDecimal height;
 
         /**
          * Breadth builder method.
@@ -38,8 +40,8 @@ public final class Rectangle implements Shape {
          * @param value Breadth value
          * @return Rectangle builder instance
          */
-        public RectangleBuilder breadth(double value) {
-            Validate.isTrue(value >= 0, "Rectangle breadth must be a positive value");
+        public RectangleBuilder breadth(BigDecimal value) {
+            Validate.isTrue(value != null && value.doubleValue() >= 0, "Rectangle breadth must be a positive value");
             this.breadth = value;
             return this;
         }
@@ -50,8 +52,8 @@ public final class Rectangle implements Shape {
          * @param value Height value
          * @return Rectangle builder instance
          */
-        public RectangleBuilder height(double value) {
-            Validate.isTrue(value >= 0, "Rectangle height must be a positive value");
+        public RectangleBuilder height(BigDecimal value) {
+            Validate.isTrue(value != null && value.doubleValue() >= 0, "Rectangle height must be a positive value");
             this.height = value;
             return this;
         }

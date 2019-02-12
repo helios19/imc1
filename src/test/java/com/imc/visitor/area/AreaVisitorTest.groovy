@@ -27,7 +27,7 @@ class AreaVisitorTest extends Specification {
 
         where:
         shape     | area
-        circle    | 78.53981633974483
+        circle    | 78.539816339744825
         rectangle | 72.0
         triangle  | 21.0
 

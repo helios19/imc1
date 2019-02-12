@@ -2,6 +2,8 @@ package com.imc.visitor.shapes;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,23 +15,23 @@ public class RectangleTest {
     @Test
     public void shouldReturnARectangleInstanceWhenHeightAndBreadthAreValid() {
         // given
-        double height = 9;
-        double breadth = 8;
+        BigDecimal height = BigDecimal.valueOf(9);
+        BigDecimal breadth = BigDecimal.valueOf(8);
 
         // when
         Rectangle rectangle = Rectangle.builder().height(height).breadth(breadth).build();
 
         // then
         assertNotNull(rectangle);
-        assertTrue(rectangle.getHeight() == 9);
-        assertTrue(rectangle.getBreadth() == 8);
+        assertTrue(rectangle.getHeight().intValue() == 9);
+        assertTrue(rectangle.getBreadth().intValue() == 8);
 
     }
 
     @Test
     public void shouldThrowAnExceptionWhenHeightIsNotPositive() {
         // given
-        double height = -9;
+        BigDecimal height = BigDecimal.valueOf(-9);
 
         // when
         Rectangle.RectangleBuilder rectangleBuilder = Rectangle.builder();
@@ -43,7 +45,7 @@ public class RectangleTest {
     @Test
     public void shouldThrowAnExceptionWhenBreadthIsNotPositive() {
         // given
-        double breadth = -8;
+        BigDecimal breadth = BigDecimal.valueOf(-8);
 
         // when
         Rectangle.RectangleBuilder rectangleBuilder = Rectangle.builder();

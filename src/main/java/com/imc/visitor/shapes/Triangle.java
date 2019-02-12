@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang3.Validate;
 
+import java.math.BigDecimal;
+
 /**
  * Triangle shape class.
  */
@@ -15,8 +17,8 @@ import org.apache.commons.lang3.Validate;
 @Getter
 public final class Triangle implements Shape {
 
-    private double base;
-    private double height;
+    private BigDecimal base;
+    private BigDecimal height;
 
     @Override
     public <T> T accept(ShapeVisitor<T> visitor) {
@@ -28,8 +30,8 @@ public final class Triangle implements Shape {
      */
     public static class TriangleBuilder {
 
-        private double base;
-        private double height;
+        private BigDecimal base;
+        private BigDecimal height;
 
         /**
          * Base builder method.
@@ -37,8 +39,8 @@ public final class Triangle implements Shape {
          * @param value Base value
          * @return Triangle builder instance
          */
-        public TriangleBuilder base(double value) {
-            Validate.isTrue(value >= 0, "Triangle base must be a positive value");
+        public TriangleBuilder base(BigDecimal value) {
+            Validate.isTrue(value != null && value.doubleValue() >= 0, "Triangle base must be a positive value");
             base = value;
             return this;
         }
@@ -49,8 +51,8 @@ public final class Triangle implements Shape {
          * @param value Height value
          * @return Triangle builder instance
          */
-        public TriangleBuilder height(double value) {
-            Validate.isTrue(value >= 0, "Triangle height must be a positive value");
+        public TriangleBuilder height(BigDecimal value) {
+            Validate.isTrue(value != null && value.doubleValue() >= 0, "Triangle height must be a positive value");
             height = value;
             return this;
         }
